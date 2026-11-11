@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="src/output.css" />
+  </head>
+  <body class="max-w-md mx-auto bg-slate-900 text-gray-200">
+    <h1 class="text-5xl font-bold mt-36">TODO</h1>
+    <form method="post" class="mt-8">
+      <input
+        type="text"
+        placeholder="Enter new todo"
+        name="new-todo"
+        aria-label="New todo"
+        class="px-4 py-2 rounded-lg border border-gray-400 placeholder:text-gray-700 w-full"
+      />
+    </form>
+
+    <div class="bg-slate-800 mt-8 p-4 rounded-lg">
+      <ul class="divide-y divide-gray-700">
+        <!-- <li class="flex gap-4 items-center py-2">
+          <input type="checkbox" name="" id="item-1" />
+          <label for="item-1">Complete online JavaScript course</label>
+        </li>
+        <li class="flex gap-4 items-center py-2">
+          <input type="checkbox" name="" id="item-2" />
+          <label for="item-2">Jogging</label>
+        </li> -->
+      </ul>
+      <div class="flex justify-between items-center mt-4 text-gray-600">
+        <span>3 items left</span>
+
+        <div class="flex gap-2">
+          <button>All</button>
+          <button>Active</button>
+          <button>Completed</button>
+        </div>
+
+        <button>Clear completed</button>
+      </div>
+    </div>
+    <script>
+      // Steps for creating new todo items
+      // -------------------------------------------------------------------------
+      // 1) Retrieve the user value from the form
+      // 2) Save the user value in an array
+      // 3) Create the list items for each item in the array
+      // 4) Append the newly created list items to the DOM
+      // --------------------------------------------------------------------------
+
+      let newTodos = [];
+
+      let ul = document.querySelector("ul");
+
+      let form = document.querySelector("form");
+
+      //   Creating new todo items
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        // Retrieve user data
+        let formData = new FormData(form);
+        let newTodo = formData.get("new-todo");
+        console.log({ newTodo });
+
+        // Save user data to the array
+        newTodos.push(newTodo);
+        console.log({ newTodos });
+
+        // Clear the list first to avoid duplication of values
+        ul.innerHTML = "";
+
+        newTodos.forEach((todo, index) => {
+          // Create list item
+          let li = document.createElement("li");
+          li.className = "flex gap-4 items-center py-2";
+
+          let input = document.createElement("input");
+          input.type = "checkbox";
+          input.setAttribute("id", `item-${index}`);
+
+          let label = document.createElement("label");
+          label.setAttribute("for", `item-${index}`);
+          label.textContent = todo;
+
+          li.append(input, label);
+          ul.append(li);
+        });
+      });
+    </script>
+  </body>
+</html>
