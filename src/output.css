@@ -17,6 +17,7 @@
     --color-gray-700: oklch(37.3% 0.034 259.733);
     --spacing: 0.25rem;
     --container-md: 28rem;
+    --container-lg: 32rem;
     --container-xl: 36rem;
     --container-3xl: 48rem;
     --container-6xl: 72rem;
@@ -204,6 +205,9 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
+  .max-w-lg {
+    max-width: var(--container-lg);
+  }
   .max-w-md {
     max-width: var(--container-md);
   }
@@ -292,6 +296,12 @@
   .outline {
     outline-style: var(--tw-outline-style);
     outline-width: 1px;
+  }
+  :is(:where(.peer):checked ~ .peer-checked\:text-gray-600) {
+    color: var(--color-gray-600);
+  }
+  :is(:where(.peer):checked ~ .peer-checked\:line-through) {
+    text-decoration-line: line-through;
   }
   .placeholder\:text-gray-400::placeholder {
     color: var(--color-gray-400);
